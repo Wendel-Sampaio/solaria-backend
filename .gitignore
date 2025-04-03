@@ -32,6 +32,7 @@ build/
 *.iws
 *.iml
 *.ipr
+.idea/
 
 # Eclipse
 .project
