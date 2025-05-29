@@ -1,5 +1,6 @@
 package com.solaria.app.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -56,6 +57,7 @@ public class User {
 
     @Column(updatable = false)
     @CreationTimestamp
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Timestamp createdAt;
 
     private boolean ban;
