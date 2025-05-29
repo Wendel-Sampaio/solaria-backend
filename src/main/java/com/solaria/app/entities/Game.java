@@ -1,0 +1,46 @@
+package com.solaria.app.entities;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+public class Game {
+
+    @Id
+    @UuidGenerator
+    private UUID id;
+
+    @Column(length = 100, nullable = false)
+    @Size(min = 3, max = 100, message = "Title must be between 3 and 100 characters.")
+    @NotBlank(message = "Title is required.")
+    private String title;
+
+    @Column(length = 1000, nullable = false)
+    @Size(min = 3, max = 1000, message = "Description must be between 30 and 1000 characteres.")
+    @NotBlank(message = "Description is required.")
+    private String description;
+
+    @Column(nullable = false)
+    @NotNull(message = "Genre is required.")
+    private Genre genre;
+
+    private String coverImage;
+
+    @NotNull(message = "Release date is required.")
+    private LocalDate releaseDate;
+
+    @NotNull(message = "Creator user id is required.")
+    private UUID creatorUserId;
+
+    private LocalDateTime updatedAt;
+
+}
