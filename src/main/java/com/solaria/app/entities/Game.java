@@ -1,8 +1,6 @@
 package com.solaria.app.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -13,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+@Table(name = "games")
 public class Game {
 
     @Id
@@ -29,6 +28,7 @@ public class Game {
     @NotBlank(message = "Description is required.")
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @NotNull(message = "Genre is required.")
     private Genre genre;

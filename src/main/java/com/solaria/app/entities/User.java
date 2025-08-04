@@ -1,15 +1,11 @@
 package com.solaria.app.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +13,6 @@ import org.hibernate.annotations.UuidGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
@@ -64,6 +59,7 @@ public class User implements UserDetails {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Timestamp createdAt;
 
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     private boolean ban;
