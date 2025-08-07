@@ -1,8 +1,8 @@
 package com.solaria.app.controllers;
 
+import com.solaria.app.DTOs.GameDTO;
 import com.solaria.app.entities.Game;
 import com.solaria.app.services.GameService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +17,9 @@ public class GameController {
     private GameService gameService;
 
     @PostMapping
-    public ResponseEntity<Game> postGame(@RequestBody @Valid Game game) {
-        System.out.print(game);
-        gameService.postGame(game);
-        return ResponseEntity.ok(game);
+    public ResponseEntity<GameDTO> postGame(@RequestBody GameDTO data) {
+        gameService.postGame(data);
+        return ResponseEntity.ok(data);
     }
 
     @GetMapping
