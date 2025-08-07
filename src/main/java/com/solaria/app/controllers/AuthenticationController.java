@@ -34,11 +34,12 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
+        System.out.println(data.toString());
         if(this.userRepository.findByEmail(data.email()) != null) {
             return ResponseEntity.badRequest().build();
         }
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.email(), encryptedPassword, data.role());
+        User newUser = new User(data.firstName(), data.lastName(), data.username(), data.email(), encryptedPassword, data.role());
         this.userRepository.save(newUser);
         return ResponseEntity.ok().build();
     }
