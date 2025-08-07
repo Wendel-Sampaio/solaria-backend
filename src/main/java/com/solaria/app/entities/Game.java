@@ -26,9 +26,6 @@ public class Game {
     @UuidGenerator
     private UUID id;
 
-    @Column(unique = true, nullable = true)
-    private Long rawgId;
-
     @Column(length = 100, nullable = false)
     @Size(min = 3, max = 100, message = "Title must be between 3 and 100 characters.")
     @NotBlank(message = "Title is required.")
