@@ -1,6 +1,7 @@
 package com.solaria.app.controllers;
 
 import com.solaria.app.DTOs.GameDTO;
+import com.solaria.app.DTOs.GameViewDTO;
 import com.solaria.app.entities.Game;
 import com.solaria.app.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class GameController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Game>> getAllGames() {
-        List<Game> games = gameService.getAllGames();
+    public ResponseEntity<List<GameViewDTO>> getAllGames() {
+        List<GameViewDTO> games = gameService.getAllGames();
         return ResponseEntity.ok(games);
     }
 }

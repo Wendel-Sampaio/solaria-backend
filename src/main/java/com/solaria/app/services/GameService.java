@@ -1,7 +1,9 @@
 package com.solaria.app.services;
 
 import com.solaria.app.DTOs.GameDTO;
+import com.solaria.app.DTOs.GameViewDTO;
 import com.solaria.app.entities.Game;
+import com.solaria.app.mappers.GameMapper;
 import com.solaria.app.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +16,16 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
+    @Autowired
+    private GameMapper gameMapper;
+
     public void postGame(GameDTO data) {
-        System.out.println(data);
-        Game newGame = new Game(data.title(), data.description(), data.genre(), data.coverImage(), data.releaseDate(), data.creatorUserId());
+        Game newGame = gameMapper.toEntity(data);
         gameRepository.save(newGame);
     }
 
-    public List<Game> getAllGames() {
-        return gameRepository.findAll();
+    public List<GameViewDTO> getAllGames() {
+        List<Game> games = gameRepository.findAll();
+        return gameMapper.toViewDtoList(games);
     }
 }
