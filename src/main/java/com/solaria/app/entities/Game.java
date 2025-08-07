@@ -8,8 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -25,6 +25,9 @@ public class Game {
     @Id
     @UuidGenerator
     private UUID id;
+
+    @Column(unique = true, nullable = true)
+    private Long rawgId;
 
     @Column(length = 100, nullable = false)
     @Size(min = 3, max = 100, message = "Title must be between 3 and 100 characters.")
@@ -49,6 +52,16 @@ public class Game {
     @NotNull(message = "Creator user id is required.")
     private UUID creatorUserId;
 
+    @UpdateTimestamp
+    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    public Game(String title, String description, Genre genre, String coverImage, LocalDate releaseDate, UUID creatorUserId) {
+        this.title = title;
+        this.description = description;
+        this.genre = genre;
+        this.coverImage = coverImage;
+        this.releaseDate = releaseDate;
+        this.creatorUserId = creatorUserId;
+    }
 }
