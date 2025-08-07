@@ -1,8 +1,10 @@
 package com.solaria.app.controllers;
 
 import com.solaria.app.DTOs.AuthenticationDTO;
+import com.solaria.app.DTOs.LoginResponseDTO;
 import com.solaria.app.DTOs.RegisterDTO;
 import com.solaria.app.entities.User;
+import com.solaria.app.infra.security.TokenService;
 import com.solaria.app.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,15 @@ public class AuthenticationController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.password());
         var auth = this.authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok().build();
+        var token = tokenService.genarateToken((User) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")

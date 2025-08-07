@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "users")
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
@@ -64,12 +66,6 @@ public class User implements UserDetails {
 
     private boolean ban;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
-        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
     public User(String firstName, String lastName, String username, String email, String password, UserRole role) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -79,29 +75,12 @@ public class User implements UserDetails {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", createdAt=" + createdAt +
-                ", role=" + role +
-                ", ban=" + ban +
-                '}';
-    }
 
     @Override
-    public String getPassword() {
-        return "";
-    }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
+        else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 
-    @Override
-    public String getUsername() {
-        return email;
     }
 
     @Override
