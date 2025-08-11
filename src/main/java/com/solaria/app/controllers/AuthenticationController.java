@@ -4,6 +4,7 @@ import com.solaria.app.DTOs.AuthenticationDTO;
 import com.solaria.app.DTOs.LoginResponseDTO;
 import com.solaria.app.DTOs.RegisterDTO;
 import com.solaria.app.entities.User;
+import com.solaria.app.entities.UserRole;
 import com.solaria.app.infra.security.TokenService;
 import com.solaria.app.repositories.UserRepository;
 import jakarta.validation.Valid;
@@ -40,12 +41,10 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
-        System.out.println(data.toString());
-        if(this.userRepository.findByEmail(data.email()) != null) {
-            return ResponseEntity.badRequest().build();
-        }
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.firstName(), data.lastName(), data.username(), data.email(), encryptedPassword, data.role());
+        User newUser = new User(data.firstName(), data.lastName(), data.username(), data.email(), encryptedPassword);
+        newUser.setRole(UserRole.USER);
+        newUser.setBan(false);
         this.userRepository.save(newUser);
         return ResponseEntity.ok().build();
     }

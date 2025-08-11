@@ -66,13 +66,12 @@ public class User implements UserDetails {
 
     private boolean ban;
 
-    public User(String firstName, String lastName, String username, String email, String password, UserRole role) {
+    public User(String firstName, String lastName, String username, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.role = role;
     }
 
 
