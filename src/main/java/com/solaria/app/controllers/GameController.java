@@ -1,8 +1,7 @@
 package com.solaria.app.controllers;
 
-import com.solaria.app.DTOs.GameDTO;
-import com.solaria.app.DTOs.GameViewDTO;
-import com.solaria.app.entities.Game;
+import com.solaria.app.dtos.GameDTO;
+import com.solaria.app.dtos.GameViewDTO;
 import com.solaria.app.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

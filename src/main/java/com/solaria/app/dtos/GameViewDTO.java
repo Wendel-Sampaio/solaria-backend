@@ -1,4 +1,4 @@
-package com.solaria.app.DTOs;
+package com.solaria.app.dtos;
 
 import com.solaria.app.entities.Genre;
 

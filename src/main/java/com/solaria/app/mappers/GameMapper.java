@@ -1,7 +1,7 @@
 package com.solaria.app.mappers;
 
-import com.solaria.app.DTOs.GameDTO;
-import com.solaria.app.DTOs.GameViewDTO;
+import com.solaria.app.dtos.GameDTO;
+import com.solaria.app.dtos.GameViewDTO;
 import com.solaria.app.entities.Game;
 import org.mapstruct.Mapper;
 

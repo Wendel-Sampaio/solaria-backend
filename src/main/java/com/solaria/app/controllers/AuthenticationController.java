@@ -1,8 +1,8 @@
 package com.solaria.app.controllers;
 
-import com.solaria.app.DTOs.AuthenticationDTO;
-import com.solaria.app.DTOs.LoginResponseDTO;
-import com.solaria.app.DTOs.RegisterDTO;
+import com.solaria.app.dtos.AuthenticationDTO;
+import com.solaria.app.dtos.LoginResponseDTO;
+import com.solaria.app.dtos.RegisterDTO;
 import com.solaria.app.entities.User;
 import com.solaria.app.entities.UserRole;
 import com.solaria.app.infra.security.TokenService;

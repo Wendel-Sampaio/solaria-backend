@@ -1,6 +1,4 @@
-package com.solaria.app.DTOs;
-
-import com.solaria.app.entities.UserRole;
+package com.solaria.app.dtos;
 
 public record RegisterDTO(
         String firstName,

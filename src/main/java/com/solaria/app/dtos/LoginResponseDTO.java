@@ -1,4 +1,4 @@
-package com.solaria.app.DTOs;
+package com.solaria.app.dtos;
 
 public record LoginResponseDTO(String token) {
 }
